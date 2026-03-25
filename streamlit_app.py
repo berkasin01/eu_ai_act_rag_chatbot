@@ -11,6 +11,8 @@ import sentence_transformers
 import chromadb
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_classic.chains.retrieval_qa.base import RetrievalQA
+import os
+
 
 @st.cache_resource
 def build_rag(pdf):
