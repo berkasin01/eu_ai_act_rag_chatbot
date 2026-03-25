@@ -1,4 +1,4 @@
-import streamlit
+import streamlit as st
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -9,8 +9,10 @@ from langchain_community.vectorstores import Chroma
 import pypdf
 import sentence_transformers
 import chromadb
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_classic.chains.retrieval_qa.base import RetrievalQA
 
-
+@st.cache_resource
 def build_rag(pdf):
     loader = PyPDFLoader(pdf)
     pages = loader.load()
@@ -24,7 +26,8 @@ def build_rag(pdf):
 
     return vectorstore
 
-vector_database = build_rag("EU_AI_ACT_2024.pdf")
+def get_llm_reply(query):
+    vector_database = build_rag("EU_AI_ACT_2024.pdf")
 
     # example = vector_database.similarity_search("requirements for high-risk AI systems?", k=3)
     # print(example[0].page_content)
