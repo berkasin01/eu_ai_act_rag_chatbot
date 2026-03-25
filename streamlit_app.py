@@ -12,7 +12,7 @@ import chromadb
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_classic.chains.retrieval_qa.base import RetrievalQA
 import os
-
+from pathlib import Path
 
 @st.cache_resource
 def build_rag(pdf):
