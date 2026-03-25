@@ -27,7 +27,8 @@ def build_rag(pdf):
     return vectorstore
 
 def get_llm_reply(query):
-    vector_database = build_rag("EU_AI_ACT_2024.pdf")
+    pdf_path = os.path.join(os.path.dirname(__file__), "EU_AI_ACT_2024.pdf")
+    vector_database = build_rag(pdf_path)
 
     # example = vector_database.similarity_search("requirements for high-risk AI systems?", k=3)
     # print(example[0].page_content)
